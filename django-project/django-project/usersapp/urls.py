@@ -3,5 +3,5 @@ from . import views
 
 # URL Congiguration
 urlpatterns = [
-    path('hello/', views.say_hello)
+    path('hello/', views.say_hello),
 ]
