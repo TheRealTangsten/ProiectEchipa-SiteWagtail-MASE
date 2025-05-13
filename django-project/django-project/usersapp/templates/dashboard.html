@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard utilizator - Fii Verde</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script defer src="{% static 'js/dashboard.js' %}"></script>
+</head>
+<body>
+<header>
+    <div class="logo">🌿 Fii Verde</div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="/">Acasă</a></li>
+            <li><a href="/despre">Despre</a></li>
+            <li><a href="/contact">Contact</a></li>
+            {% if request.session.user_id %}
+            <li><a href="/usersapp/dashboard">Contul meu</a></li>
+            <li><a href="/usersapp/logout">Deconectare</a></li>
+        {% else %}
+            <li><a href="/usersapp/login">Autentificare</a></li>
+        {% endif %}
+        </ul>
+    </nav>
+</header>
+
+<section class="dashboard-section">
+    <div class="container">
+        <h1>Profil utilizator</h1>
+        <form method="post" action="">
+            {% csrf_token %}
+
+            <label for="nume">Nume</label>
+            <input type="text" id="nume" name="nume" value="{{ user.nume }}" required>
+
+            <label for="prenume">Prenume</label>
+            <input type="text" id="prenume" name="prenume" value="{{ user.prenume }}" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="{{ user.email }}" required>
+
+            <label for="parola">Parolă</label>
+            <input type="password" id="parola" name="parola" value="{{ user.parola }}" required>
+
+            <label for="tip_persoana">Tip persoană</label>
+            <input type="text" id="tip_persoana" name="tip_persoana" value="{{ user.tip_persoana }}" disabled>
+
+            {% if user.tip_persoana == 'Juridică' %}
+                <label for="companie">Nume companie</label>
+                <input type="text" id="companie" name="companie" value="{{ user.companie }}">
+            {% endif %}
+
+            <label for="adresa">Adresă</label>
+            <input type="text" id="adresa" name="adresa" value="{{ user.adresa }}">
+
+            <div class="status-cos">
+                <label>Status coș reciclare:</label>
+                <button type="button" id="toggleStatus" class="{% if user.status_cos %}plin{% else %}gol{% endif %}">
+                    {% if user.status_cos %}
+                        Container plin – gata de colectat
+                    {% else %}
+                        Container gol
+                    {% endif %}
+                </button>
+                
+                <input type="hidden" name="status_cos" id="status_cos" value="{{ user.status_cos|yesno:'true,false' }}">
+            </div>
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color: green; font-weight: bold; margin-top: 30px;">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            <div id="harta"
+                data-lat="{{ user.lat|default_if_none:'' }}"
+                data-lon="{{ user.lon|default_if_none:'' }}"
+                style="height: 400px; width: 100%; border-radius: 12px; margin-top: 30px;">
+            </div>
+            <div class="form-buttons">
+                <button type="submit">Salvează modificările</button>
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

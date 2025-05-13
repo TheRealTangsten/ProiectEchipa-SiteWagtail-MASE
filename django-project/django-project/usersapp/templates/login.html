@@ -25,6 +25,9 @@
         <form method="post" action="">
             {% csrf_token %}
             <h2>Autentificare</h2>
+            {% if error %}
+                <p style="color: red; font-weight: bold;">{{ error }}</p>
+            {% endif %}
 
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required>

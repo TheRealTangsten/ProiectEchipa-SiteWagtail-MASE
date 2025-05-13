@@ -16,7 +16,12 @@
                 <li><a href="/">Acasă</a></li>
                 <li><a href="/despre">Despre</a></li>
                 <li><a href="/contact">Contact</a></li>
-                <li><a href="/usersapp/register">Autentificare</a></li>
+                {% if request.session.user_id %}
+                <li><a href="/usersapp/dashboard">Contul meu</a></li>
+                <li><a href="/usersapp/logout">Deconectare</a></li>
+                {% else %}
+                    <li><a href="/usersapp/login">Autentificare</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
@@ -27,7 +32,7 @@
             <p><strong>Proiect:</strong> Platformă de colectare și gestionare a maculaturii în cadrul campaniei „Fii Verde!”</p>
             <p><strong>Materia:</strong> Managementul activităților cu suport electronic (e-activities)</p>
             <p><strong>Coordonator:</strong> Prof. Dr. Ing. Radu Rădescu</p>
-            <p><strong>Website realizat de studenții: </strong>Ionescu Cristian-George, Iancu Cristian</p>
+            <p><strong>Website realizat de studenții: </strong>Iancu Cristian, Ionescu Cristian-George</p>
             <p><strong>Program de studii:</strong> Ingineria Informației și a Sistemelor de Calcul</p>
             <p><strong>Grupa:</strong> 411-IISC</p>
         </div>

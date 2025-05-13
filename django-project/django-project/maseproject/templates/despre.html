@@ -16,7 +16,12 @@
                 <li><a href="/">Acasă</a></li>
                 <li><a href="/despre">Despre</a></li>
                 <li><a href="/contact">Contact</a></li>
-                <li><a href="/usersapp/register">Autentificare</a></li>
+                {% if request.session.user_id %}
+                <li><a href="/usersapp/dashboard">Contul meu</a></li>
+                <li><a href="/usersapp/logout">Deconectare</a></li>
+                {% else %}
+                    <li><a href="/usersapp/login">Autentificare</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>

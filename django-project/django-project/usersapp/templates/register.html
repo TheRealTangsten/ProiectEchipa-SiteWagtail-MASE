@@ -23,7 +23,8 @@
     </header>
 
     <section class="form-section">
-        <form>
+        <form method="POST" action="">
+            {% csrf_token %}
             <h2>Creare cont</h2>
 
             <label for="first_name">Prenume</label>

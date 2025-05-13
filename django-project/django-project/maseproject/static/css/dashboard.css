@@ -1,47 +1,59 @@
-.form-section {
+.dashboard-section {
     margin-top: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+    background-color: #f5fff6;
 }
 
-form {
+.container {
+    max-width: 700px;
+    margin: 0 auto;
     background: white;
     padding: 40px;
     border-radius: 12px;
-    max-width: 500px;
-    width: 100%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-form h2 {
-    margin-bottom: 20px;
-    color: #2e7d32;
-    text-align: center;
-}
-
-label {
+form label {
     display: block;
     margin-top: 15px;
     margin-bottom: 5px;
     font-weight: 500;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
     width: 100%;
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #ccc;
 }
 
-.checkbox-container {
-    margin-top: 15px;
+.status-cos {
+    margin-top: 20px;
 }
 
-.checkbox-container input {
-    margin-right: 10px;
+.status-cos button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.status-cos button.gol {
+    background-color: #f44336; /* roșu */
+}
+
+.status-cos button.plin {
+    background-color: #4caf50; /* verde */
+}
+
+.status-cos button:hover {
+    filter: brightness(0.9);
 }
 
 .form-buttons {
@@ -63,22 +75,3 @@ input[type="password"] {
 .form-buttons button:hover {
     background-color: #388e3c;
 }
-
-.form-footer {
-    margin-top: 25px;
-    text-align: center;
-    font-size: 0.95rem;
-}
-
-.form-footer a {
-    color: #4caf50;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.form-footer a:hover {
-    color: #388e3c;
-    text-decoration: underline;
-}
-
