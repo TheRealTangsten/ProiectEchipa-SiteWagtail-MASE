@@ -1,0 +1,55 @@
+.content-section {
+    margin-top: 100px;
+    padding: 40px 20px;
+    background: #f9fff9;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+h1 {
+    font-size: 2.2rem;
+    color: #2e7d32;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #388e3c;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+p {
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Doar lista din interiorul .container */
+.container ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.container ul li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.container ul li::before {
+    content: "🌱";
+    position: absolute;
+    left: 0;
+}
+

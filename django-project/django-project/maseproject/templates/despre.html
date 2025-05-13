@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Despre - Fii Verde</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/despre.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">🌿 Fii Verde</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/">Acasă</a></li>
+                <li><a href="/despre">Despre</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/usersapp/register">Autentificare</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="content-section">
+        <div class="container">
+            <h1>Despre proiectul „Fii Verde”</h1>
+            <p>
+                Proiectul „Fii Verde” reprezintă o aplicație web dedicată gestionării procesului de colectare a hârtiei reciclabile (maculatură), în cadrul unei campanii de reciclare și protecție a mediului. Această platformă digitală contribuie activ la combaterea risipei de resurse naturale prin promovarea unui comportament ecologic responsabil.
+            </p>
+
+            <h2>Scopul aplicației</h2>
+            <p>
+                Aplicația are ca scop centralizarea punctelor de colectare a maculaturii și oferirea unui mecanism eficient de comunicare între utilizatori și administratorii sistemului. Utilizatorii, persoane fizice sau juridice (instituții publice, companii), pot semnala momentul în care recipientele proprii pentru hârtie reciclată sunt pline, folosind un simplu buton verde din aplicație.
+            </p>
+
+            <h2>Funcționalități principale</h2>
+            <ul>
+                <li>✅ Înregistrare și autentificare utilizatori (persoane fizice sau juridice)</li>
+                <li>✅ Transmiterea poziției geografice pentru colectare</li>
+                <li>✅ Notificare în timp real către administrator în momentul umplerii containerului</li>
+                <li>✅ Vizualizare hartă interactivă cu locațiile active</li>
+                <li>✅ Calculul traseului optim prin integrare cu Waze / Google Maps</li>
+                <li>✅ Informare și conștientizare cu privire la reciclare și legislația aferentă</li>
+                <li>✅ Conectare opțională cu rețelele sociale</li>
+            </ul>
+
+            <h2>Beneficii și impact</h2>
+            <p>
+                Prin utilizarea platformei „Fii Verde”, se facilitează colectarea eficientă a deșeurilor de hârtie, se reduce consumul inutil de lemn și se contribuie la protejarea pădurilor. Totodată, aplicația aduce un plus de transparență și organizare în procesele logistice de colectare.
+            </p>
+
+            <h2>Tehnologii utilizate</h2>
+            <p>
+                Aplicația este dezvoltată folosind tehnologii web moderne (HTML, CSS, JavaScript, Django, Google Maps API, Waze API) și poate fi extinsă către aplicații mobile Android/iOS. Arhitectura include baze de date, interfețe pentru utilizatori și administratori, precum și integrare cu servicii externe de localizare.
+            </p>
+        </div>
+    </section>
+</body>
+</html>

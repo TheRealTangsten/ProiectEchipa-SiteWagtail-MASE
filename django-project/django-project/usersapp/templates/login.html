@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Autentificare - Fii Verde</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">🌿 Fii Verde</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/">Acasă</a></li>
+                <li><a href="/despre">Despre</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/usersapp/register">Autentificare</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="form-section">
+        <form method="post" action="">
+            {% csrf_token %}
+            <h2>Autentificare</h2>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Parolă</label>
+            <input type="password" id="password" name="password" required>
+
+            <div class="form-buttons">
+                <button type="submit">Autentifică-te</button>
+            </div>
+
+            <div class="form-footer">
+                <p>Nu ai cont? <a href="/usersapp/register">Înregistrează-te aici</a></p>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

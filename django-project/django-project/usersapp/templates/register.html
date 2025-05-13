@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Creare cont - Fii Verde</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script defer src="{% static 'js/register.js' %}"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">🌿 Fii Verde</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/">Acasă</a></li>
+                <li><a href="/despre">Despre</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/usersapp/register">Autentificare</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="form-section">
+        <form>
+            <h2>Creare cont</h2>
+
+            <label for="first_name">Prenume</label>
+            <input type="text" id="first_name" name="first_name" required>
+
+            <label for="last_name">Nume</label>
+            <input type="text" id="last_name" name="last_name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Parolă</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="address">Adresă</label>
+            <input type="text" id="address" name="address">
+
+            <div class="checkbox-container">
+                <label>
+                    <input type="checkbox" id="legal-person-checkbox">
+                    Persoană juridică
+                </label>
+            </div>
+            
+
+            <div id="company-name-field" style="display: none;">
+                <label for="company_name">Nume companie</label>
+                <input type="text" id="company_name" name="company_name">
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit">Creează cont</button>
+            </div>
+            <div class="form-footer">
+                <p>Ai deja un cont? <a href="/usersapp/login">Autentifică-te aici</a></p>
+            </div>
+            
+        </form>
+    </section>
+</body>
+</html>
