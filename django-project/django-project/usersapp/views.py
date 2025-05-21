@@ -5,6 +5,7 @@ from django.contrib import messages
 import requests
 import json
 
+list_admins = ["admin admin", "admin2 admin2"]
 
 def get_coords_from_address(address):
     url = "https://nominatim.openstreetmap.org/search"
@@ -114,22 +115,31 @@ def dashboard_view(request):
         return redirect('/usersapp/dashboard')
 
     # === Adăugăm locațiile tuturor userilor doar dacă e admin admin ===
-    context = {"user": u}
-    if u.nume.lower() == "admin" and u.prenume.lower() == "admin":
+
+    full_name_user = u.nume.lower() + " " + u.prenume.lower()
+    user_has_map_access = full_name_user in list_admins
+    user_not_has_map_access = full_name_user not in list_admins
+    context = {"user": u, "user_has_map_access": user_has_map_access, "user_not_has_map_access": user_not_has_map_access}
+    full_name = u.nume.lower() + " " + u.prenume.lower()
+
+    if full_name in list_admins:
         all_users = user.objects.filter(lat__isnull=False, lon__isnull=False)
         user_locations = []
         for usr in all_users:
-            try:
-                lat = float(usr.lat)
-                lon = float(usr.lon)
-                user_locations.append({
-                    "lat": lat,
-                    "lon": lon,
-                    "name": f"{usr.nume} {usr.prenume}",
-                    "adresa": usr.adresa
-                })
-            except (ValueError, TypeError):
-                continue
+            full_name_usr = usr.nume.lower() + " " + usr.prenume.lower()
+            if full_name_usr not in list_admins:
+                try:
+                    lat = float(usr.lat)
+                    lon = float(usr.lon)
+                    user_locations.append({
+                        "lat": lat,
+                        "lon": lon,
+                        "name": f"{usr.nume} {usr.prenume}",
+                        "adresa": usr.adresa,
+                        "status_cos": usr.status_cos
+                    })
+                except (ValueError, TypeError):
+                    continue
         context["all_user_locations"] = json.dumps(user_locations)
 
     return render(request, 'dashboard.html', context)

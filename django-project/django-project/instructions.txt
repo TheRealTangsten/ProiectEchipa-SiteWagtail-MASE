@@ -18,3 +18,6 @@ Ionescu API Key: AIzaSyCU6xG5LXFTZbcccWOAiex1cQtfTghEbrI
 
 user: Gigel | Costel | test2email@mail.com | 123456 | Bulevardul Iuliu Maniu 1-3, București 061071
 user: admin | admin | admin@mail.com | 123456 | Bulevardul Geniului 42B, București 060117
+user admin2 | admin2 | admin2@mail.com | 123456 | ?????
+user: Gogu | Pintenogu | gogup@mail.com | 123456 | Drumul Taberei 18, București 061344
+user: Mihai | Eminescu | mihai_emi@poet.ro | luceafarul | Strada George Georgescu 2, București 040133
