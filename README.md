@@ -1,9 +1,16 @@
-https://docs.wagtail.org/en/stable/getting_started/tutorial.html#
 
-Activate virtual environment:
 
-mysite\env\Scripts\activate.bat
+Actual project location: "django-project\django-project"
 
-Start server: - python manage.py runserver
-After the server starts, go to http://127.0.0.1:8000 to see Wagtail’s welcome page:
+Latest version of python preffered. ( used python 3.13 )
+
+One time setup needed:
+	pip install pipenv
+	pipenv install django
+
+activate_venv.bat -> activates project venv
+start_server -> starts the django web server
+migrate.bat -> in case you add new apps / modifiy model apps, makes a commit with the new changes
+
+Refer to "instructions.txt" for further information
 

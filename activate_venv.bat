@@ -1,1 +1,0 @@
-mysite\env\Scripts\activate.bat
