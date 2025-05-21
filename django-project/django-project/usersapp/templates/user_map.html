@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Harta Utilizatorilor</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCU6xG5LXFTZbcccWOAiex1cQtfTghEbrI"></script>
+    <script>
+        function initMap() {
+            var center = {lat: 45.9432, lng: 24.9668};  // România
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 6,
+                center: center
+            });
+
+            var markers = JSON.parse('{{ user_locations|escapejs }}');
+
+            markers.forEach(function(marker) {
+                var position = {
+                    lat: parseFloat(marker.lat),
+                    lng: parseFloat(marker.lon)
+                };
+
+                var infoContent = `<strong>${marker.name}</strong><br>${marker.adresa}`;
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: infoContent
+                });
+
+                var gMarker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    title: marker.name
+                });
+
+                gMarker.addListener('click', function () {
+                    infowindow.open(map, gMarker);
+                });
+            });
+        }
+    </script>
+</head>
+<body onload="initMap();">
+    <h1>Harta Utilizatorilor</h1>
+    <div id="map" style="width: 100%; height: 500px;"></div>
+</body>
+</html>

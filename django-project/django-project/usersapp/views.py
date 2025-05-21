@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import user
 from django.contrib import messages
 import requests
+import json
 
 
 def get_coords_from_address(address):
@@ -90,20 +91,6 @@ def dashboard_view(request):
         return redirect('/usersapp/login')
 
     u = user.objects.get(id=user_id)
-    return render(request, 'dashboard.html', {'user': u})
-
-
-def logout_view(request):
-    request.session.flush()
-    return redirect('/usersapp/login')
-
-
-def dashboard_view(request):
-    user_id = request.session.get('user_id')
-    if not user_id:
-        return redirect('/usersapp/login')
-
-    u = user.objects.get(id=user_id)
 
     if request.method == 'POST':
         u.nume = request.POST.get('nume')
@@ -112,22 +99,69 @@ def dashboard_view(request):
         u.parola = request.POST.get('parola')
         u.adresa = request.POST.get('adresa')
 
-        if u.tip_persoana == 'juridica':
+        if u.tip_persoana.lower() == 'juridica':
             u.companie = request.POST.get('companie', '')
 
         u.status_cos = request.POST.get('status_cos') == 'true'
-        
+
         coords = get_coords_from_address(u.adresa)
         if coords != (None, None):
             u.lat, u.lon = coords
-            
+
         u.save()
 
-        # ✅ Aici pui mesajul:
         messages.success(request, "Modificările au fost salvate cu succes!")
-
         return redirect('/usersapp/dashboard')
 
-    return render(request, 'dashboard.html', {'user': u})
+    # === Adăugăm locațiile tuturor userilor doar dacă e admin admin ===
+    context = {"user": u}
+    if u.nume.lower() == "admin" and u.prenume.lower() == "admin":
+        all_users = user.objects.filter(lat__isnull=False, lon__isnull=False)
+        user_locations = []
+        for usr in all_users:
+            try:
+                lat = float(usr.lat)
+                lon = float(usr.lon)
+                user_locations.append({
+                    "lat": lat,
+                    "lon": lon,
+                    "name": f"{usr.nume} {usr.prenume}",
+                    "adresa": usr.adresa
+                })
+            except (ValueError, TypeError):
+                continue
+        context["all_user_locations"] = json.dumps(user_locations)
+
+    return render(request, 'dashboard.html', context)
 
 
+def logout_view(request):
+    request.session.flush()
+    return redirect('/usersapp/login')
+
+
+
+def user_map(request):
+    # Obține toți userii care au atât lat, cât și lon definite și numerice
+    users = user.objects.filter(lat__isnull=False, lon__isnull=False)
+
+    # Convertim în listă doar userii care au valori numerice valide
+    user_locations = []
+    for u in users:
+        try:
+            lat = float(u.lat)
+            lon = float(u.lon)
+            user_locations.append({
+                "lat": lat,
+                "lon": lon,
+                "name": f"{u.nume} {u.prenume}",
+                "adresa": u.adresa
+            })
+        except (ValueError, TypeError):
+            continue  # ignoră userii cu coordonate invalide
+
+    context = {
+        "user_locations": json.dumps(user_locations)
+    }
+
+    return render(request, "user_map.html", context)

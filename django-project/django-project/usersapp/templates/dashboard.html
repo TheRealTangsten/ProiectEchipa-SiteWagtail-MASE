@@ -85,6 +85,54 @@
             <div class="form-buttons">
                 <button type="submit">Salvează modificările</button>
             </div>
+
+            {% if user.nume|lower == "admin" and user.prenume|lower == "admin" %}
+            <h2 style="margin-top: 60px;">Harta tuturor cosurilor</h2>
+            <div id="map-all-users" style="width: 100%; height: 500px; margin-bottom: 50px; border-radius: 12px;"></div>
+
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCU6xG5LXFTZbcccWOAiex1cQtfTghEbrI"></script>
+            <script>
+                function initGlobalMap() {
+                    var center = {lat: 45.9432, lng: 24.9668};  // România
+                    var map = new google.maps.Map(document.getElementById('map-all-users'), {
+                        zoom: 6,
+                        center: center
+                    });
+
+                    var markers = JSON.parse('{{ all_user_locations|escapejs }}');
+
+                    markers.forEach(function(marker) {
+                        var position = {
+                            lat: parseFloat(marker.lat),
+                            lng: parseFloat(marker.lon)
+                        };
+
+                        var infoContent = `<strong>${marker.name}</strong><br>${marker.adresa}`;
+
+                        var infowindow = new google.maps.InfoWindow({
+                            content: infoContent
+                        });
+
+                        var gMarker = new google.maps.Marker({
+                            position: position,
+                            map: map,
+                            title: marker.name
+                        });
+
+                        gMarker.addListener('click', function () {
+                            infowindow.open(map, gMarker);
+                        });
+                    });
+                }
+
+                document.addEventListener("DOMContentLoaded", function () {
+                    if (document.getElementById("map-all-users")) {
+                        initGlobalMap();
+                    }
+                });
+            </script>
+            {% endif %}
+
         </form>
     </div>
 </section>

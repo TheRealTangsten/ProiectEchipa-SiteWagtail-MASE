@@ -1,0 +1,20 @@
+python manage.py runserver   -> Pornesti serverul si tine aplicatia hostata de obicei pe http://127.0.0.1:8000
+
+django-admin startapp nume_aplicatie  -> Creeaza o noua "aplicatie" in proiect. Vine cumva separat, dar in acelasi proiect.
+
+python manage.py makemigrations nume_aplicatie  -> Aplica migrarile, anume din clasele din models face datele si configureaza baza de date
+
+
+Date de login intr-un cont pe pagina usersapp/login:
+username: test1.email@gmail.com
+pass: 123456
+
+Daca ai nevoie de superuser pe pagina /admin ca sa vizualizezi datele:
+Username: cristian
+Pass: 123456
+
+Iancu API Key: AIzaSyArnKg6UxK_M1I6nnz_TbWSezRpLMv0HLE
+Ionescu API Key: AIzaSyCU6xG5LXFTZbcccWOAiex1cQtfTghEbrI
+
+user: Gigel | Costel | test2email@mail.com | 123456 | Bulevardul Iuliu Maniu 1-3, București 061071
+user: admin | admin | admin@mail.com | 123456 | Bulevardul Geniului 42B, București 060117
